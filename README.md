@@ -6,6 +6,9 @@
 
 ---
 
+[日本語のREADNEはこちら](README_jp.md)
+
+
 This plugin enables dynamic attachment and detachment of joints to arbitrary models/links in the Gazebo (formerly Ignition Gazebo) environment.
 
 Using this plugin, you can simulate scenarios such as "vacuum grippers" or "docking shelves to transport robots."
