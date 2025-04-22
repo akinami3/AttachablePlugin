@@ -122,9 +122,10 @@ This simulation demonstrates attaching and detaching two boxes, as shown in the 
 
 ### Docking a Shelf to a Mobile Robot
 
+This simulation demonstrates docking a shelf to a mobile robot, as shown in the video below.
+
 ![](./images/attachable_joint_mobile_robot_demo.gif)
 
-This simulation demonstrates docking a shelf to a mobile robot, as shown in the video below.
 
 - Run the sample for docking a shelf to a mobile robot.
 
@@ -144,10 +145,10 @@ This simulation demonstrates docking a shelf to a mobile robot, as shown in the 
     - (In this example, a shelf without casters is used, so the mobile robot's movement may become unstable when the shelf is attached. In practice, you may need to "slightly lift the shelf just before attaching" or "use a shelf with casters.")
 
 ### Vacuum Gripper (in conjunction with a contact sensor)
+This simulation demonstrates a vacuum gripper-like behavior, as shown in the video below.
 
 ![](./images/attachable_joint_arm_demo.gif)
 
-This simulation demonstrates a vacuum gripper-like behavior, as shown in the video below.
 
 - Run the sample for the vacuum gripper.
 
