@@ -1,0 +1,354 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="simple_six_axis_robot">
+
+  <!-- ==================== macro setting ============================ -->
+  <!-- link length -->
+  <xacro:property name="link1_length" value="0.20"/>
+  <xacro:property name="link2_length" value="0.20"/>
+  <xacro:property name="link3_length" value="0.20"/>
+  <xacro:property name="link4_length" value="0.05"/>
+  <xacro:property name="link5_length" value="0.05"/>
+  <xacro:property name="link6_length" value="0.05"/>
+
+  <!-- link size -->
+  <xacro:property name="link1_size" value="0.1"/>
+  <xacro:property name="link2_size" value="0.1"/>
+  <xacro:property name="link3_size" value="0.1"/>
+  <xacro:property name="link4_size" value="0.1"/>
+  <xacro:property name="link5_size" value="0.15"/>
+  <xacro:property name="link6_size" value="0.1"/>
+  
+  <!-- joint offset -->
+  <xacro:property name="joint1_offset" value="0"/>
+  <xacro:property name="joint2_offset" value="${link1_length}"/>
+  <xacro:property name="joint3_offset" value="${link2_length}"/>
+  <xacro:property name="joint4_offset" value="${link3_length}"/>
+  <xacro:property name="joint5_offset" value="${link4_length}"/>
+  <xacro:property name="joint6_offset" value="${link5_length}"/>
+
+  <!-- ================= gazebo setting ============================ -->
+  <gazebo>
+    <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
+      <topic>joint_states</topic>
+      <joint_name>joint1</joint_name>
+      <joint_name>joint2</joint_name>
+      <joint_name>joint3</joint_name>
+      <joint_name>joint4</joint_name>
+      <joint_name>joint5</joint_name>
+      <joint_name>joint6</joint_name>
+    </plugin>
+    
+    <plugin filename="gz-sim-joint-trajectory-controller-system" name="gz::sim::systems::JointTrajectoryController">
+      <joint_name>joint1</joint_name>
+      <initial_position>0.0</initial_position>
+      <position_p_gain>20.0</position_p_gain>
+      <position_i_gain>0.4</position_i_gain>
+      <position_d_gain>1.0</position_d_gain>
+      <position_i_min>-1</position_i_min>
+      <position_i_max>1</position_i_max>
+      <position_cmd_min>-20</position_cmd_min>
+      <position_cmd_max>20</position_cmd_max>
+
+      <joint_name>joint2</joint_name>
+      <initial_position>0.0</initial_position>
+      <position_p_gain>20.0</position_p_gain>
+      <position_i_gain>0.4</position_i_gain>
+      <position_d_gain>1.0</position_d_gain>
+      <position_i_min>-1</position_i_min>
+      <position_i_max>1</position_i_max>
+      <position_cmd_min>-20</position_cmd_min>
+      <position_cmd_max>20</position_cmd_max>
+      
+      <joint_name>joint3</joint_name>
+      <initial_position>0.0</initial_position>
+      <position_p_gain>20.0</position_p_gain>
+      <position_i_gain>0.4</position_i_gain>
+      <position_d_gain>1.0</position_d_gain>
+      <position_i_min>-1</position_i_min>
+      <position_i_max>1</position_i_max>
+      <position_cmd_min>-20</position_cmd_min>
+      <position_cmd_max>20</position_cmd_max>
+
+      <joint_name>joint4</joint_name>
+      <initial_position>0.0</initial_position>
+      <position_p_gain>20.0</position_p_gain>
+      <position_i_gain>0.4</position_i_gain>
+      <position_d_gain>1.0</position_d_gain>
+      <position_i_min>-1</position_i_min>
+      <position_i_max>1</position_i_max>
+      <position_cmd_min>-20</position_cmd_min>
+      <position_cmd_max>20</position_cmd_max>
+
+      <joint_name>joint5</joint_name>
+      <initial_position>0.0</initial_position>
+      <position_p_gain>20.0</position_p_gain>
+      <position_i_gain>0.4</position_i_gain>
+      <position_d_gain>1.0</position_d_gain>
+      <position_i_min>-1</position_i_min>
+      <position_i_max>1</position_i_max>
+      <position_cmd_min>-20</position_cmd_min>
+      <position_cmd_max>20</position_cmd_max>
+
+      <joint_name>joint6</joint_name>
+      <initial_position>0.0</initial_position>
+      <position_p_gain>20.0</position_p_gain>
+      <position_i_gain>0.4</position_i_gain>
+      <position_d_gain>1.0</position_d_gain>
+      <position_i_min>-1</position_i_min>
+      <position_i_max>1</position_i_max>
+      <position_cmd_min>-20</position_cmd_min>
+      <position_cmd_max>20</position_cmd_max>
+    </plugin>
+  </gazebo>
+
+  <gazebo reference="link1">
+    <mu1>0.8</mu1>
+    <mu2>0.8</mu2>
+  </gazebo>
+  <gazebo reference="link2">
+    <mu1>0.8</mu1>
+    <mu2>0.8</mu2>
+  </gazebo>
+  <gazebo reference="link3">
+    <mu1>0.8</mu1>
+    <mu2>0.8</mu2>
+  </gazebo>
+  <gazebo reference="link4">
+    <mu1>0.8</mu1>
+    <mu2>0.8</mu2>
+  </gazebo>
+  <gazebo reference="link5">
+    <mu1>0.8</mu1>
+    <mu2>0.8</mu2>
+  </gazebo>
+  <gazebo reference="link6">
+    <mu1>0.8</mu1>
+    <mu2>0.8</mu2>
+  </gazebo>
+
+  <!-- Set a contact sensor on the end-effector link -->
+  <gazebo reference="link6">
+    <sensor name="sensor_contact" type="contact">
+      <contact>
+        <!-- Specify "link_name_collision" (if a separate name is set for collision, specify that name) -->
+        <!-- Note: To apply a contact sensor, the joint must be set to a type other than fixed 
+             (if you want to apply a contact sensor to a fixed joint: set it to revolute and set lower and upper to 0, 
+             effectively making it the same as fixed) -->
+        <collision>link6_collision</collision>
+        <topic>/contact</topic>
+      </contact>
+      <always_on>1</always_on>
+      <update_rate>100</update_rate>
+    </sensor>
+  </gazebo>
+
+  <!-- ========== material setting ===========================-->
+  <material name="green">
+    <color rgba="0 1 0 1"/>
+  </material>
+  <material name="red">
+    <color rgba="1 0 0 1"/>
+  </material>
+  
+  <!-- ===================== link1 ==============================================-->
+  <link name="link1">
+    <visual>
+      <origin xyz="0 0 ${link1_length/2}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${link1_size} ${link1_size} ${link1_length}"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 ${link1_length/2}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${link1_size} ${link1_size} ${link1_length}"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.01"/>
+      <inertia ixx="0.000034533333" ixy="0" ixz="0"
+               iyx="0" iyy="0.000034533333" iyz="0"
+               izx="0" izy="0" izz="0.0000648"/>
+    </inertial>
+  </link>
+
+  <!-- If you want to fix the arm to the gazebo world, define the world as a link and connect it to the base link -->
+  <!-- (Just defining the world link is sufficient) -->
+  <link name="world"/>
+  <joint name="joint1" type="revolute">
+    <parent link="world"/>
+    <child  link="link1"/>
+    <origin xyz="0 0 ${joint1_offset}" rpy="0 0 0"/>
+    <axis  xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="10"/>
+    <dynamics damping="1.0" friction="1.0"/>
+  </joint>
+
+  <!-- ===================== link2 ==============================================-->
+  <link name="link2">
+    <visual>
+      <origin xyz="0 0 ${link2_length/2}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${link2_size} ${link2_size} ${link2_length}"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 ${link2_length/2}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${link2_size} ${link2_size} ${link2_length}"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.01"/>
+      <inertia ixx="0.000034533333" ixy="0" ixz="0"
+               iyx="0" iyy="0.000034533333" iyz="0"
+               izx="0" izy="0" izz="0.0000648"/>
+    </inertial>
+  </link>
+
+  <joint name="joint2" type="revolute">
+    <parent link="link1"/>
+    <child  link="link2"/>
+    <origin xyz="0 0 ${joint2_offset}" rpy="0 0 0"/>
+    <axis  xyz="0 1 0"/>
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="10"/>
+    <dynamics damping="1.0" friction="1.0"/>
+  </joint>
+
+  <!-- ===================== link3 ==============================================-->
+  <link name="link3">
+    <visual>
+      <origin xyz="0 0 ${link3_length/2}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${link3_size} ${link3_size} ${link3_length}"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 ${link3_length/2}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${link3_size} ${link3_size} ${link3_length}"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.01"/>
+      <inertia ixx="0.000034533333" ixy="0" ixz="0"
+               iyx="0" iyy="0.000034533333" iyz="0"
+               izx="0" izy="0" izz="0.0000648"/>
+    </inertial>
+  </link>
+
+  <joint name="joint3" type="revolute">
+    <parent link="link2"/>
+    <child  link="link3"/>
+    <origin xyz="0 0 ${joint3_offset}" rpy="0 0 0"/>
+    <axis  xyz="0 1 0"/>
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="10"/>
+    <dynamics damping="1.0" friction="1.0"/>
+  </joint>
+
+  <!-- ===================== link4 ==============================================-->
+  <link name="link4">
+    <visual>
+      <origin xyz="0 0 ${link4_length/2}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${link4_size} ${link4_size} ${link4_length}"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 ${link4_length/2}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${link4_size} ${link4_size} ${link4_length}"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.01"/>
+      <inertia ixx="0.000034533333" ixy="0" ixz="0"
+               iyx="0" iyy="0.000034533333" iyz="0"
+               izx="0" izy="0" izz="0.0000648"/>
+    </inertial>
+  </link>
+
+  <joint name="joint4" type="revolute">
+    <parent link="link3"/>
+    <child  link="link4"/>
+    <origin xyz="0 0 ${joint4_offset}" rpy="0 0 0"/>
+    <axis  xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="10"/>
+    <dynamics damping="1.0" friction="1.0"/>
+  </joint>
+
+  <!-- ===================== link5 ==============================================-->
+  <link name="link5">
+    <visual>
+      <origin xyz="0 0 ${link5_length/2}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${link5_size} ${link5_size} ${link5_length}"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 ${link5_length/2}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${link5_size} ${link5_size} ${link5_length}"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.01"/>
+      <inertia ixx="0.000034533333" ixy="0" ixz="0"
+               iyx="0" iyy="0.000034533333" iyz="0"
+               izx="0" izy="0" izz="0.0000648"/>
+    </inertial>
+  </link>
+
+  <joint name="joint5" type="revolute">
+    <parent link="link4"/>
+    <child  link="link5"/>
+    <origin xyz="0 0 ${joint5_offset}" rpy="0 0 0"/>
+    <axis  xyz="0 1 0"/>
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="10"/>
+    <dynamics damping="1.0" friction="1.0"/>
+  </joint>
+
+  <!-- ===================== link6 ==============================================-->
+  <link name="link6">
+    <visual>
+      <origin xyz="0 0 ${link6_length/2}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${link6_size} ${link6_size} ${link6_length}"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 ${link6_length/2}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${link6_size} ${link6_size} ${link6_length}"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.01"/>
+      <inertia ixx="0.000034533333" ixy="0" ixz="0"
+               iyx="0" iyy="0.000034533333" iyz="0"
+               izx="0" izy="0" izz="0.0000648"/>
+    </inertial>
+  </link>
+
+  <joint name="joint6" type="revolute">
+    <parent link="link5"/>
+    <child  link="link6"/>
+    <origin xyz="0 0 ${joint6_offset}" rpy="0 0 0"/>
+    <axis  xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="10"/>
+    <dynamics damping="1.0" friction="1.0"/>
+  </joint>
+
+</robot>

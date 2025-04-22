@@ -1,0 +1,16 @@
+# This file is part of the Gazebo ROS 2 Bridge.
+- ros_topic_name: "contact"
+  gz_topic_name: "contact"
+  ros_type_name: "ros_gz_interfaces/msg/Contacts"
+  gz_type_name: "gz.msgs.Contacts"
+  lazy: true
+  direction: GZ_TO_ROS
+
+# gz topic published by the simulator core
+- ros_topic_name: "cmd_vel"
+  gz_topic_name: "cmd_vel"
+  # ros_type_name: "geometry_msgs/msg/Twist"
+  ros_type_name: "geometry_msgs/msg/TwistStamped"
+  gz_type_name: "gz.msgs.Twist"
+  lazy: true
+  direction: ROS_TO_GZ
