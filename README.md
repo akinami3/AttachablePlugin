@@ -14,7 +14,7 @@
   - [Configuration](#configuration)
   - [Simulation](#simulation)
     - [Simple Attach/Detach](#simple-attachdetach)
-    - [Docking a Shelf to a Transport Robot](#docking-a-shelf-to-a-transport-robot)
+    - [Docking a Shelf to a Mobile Robot](#docking-a-shelf-to-a-mobile-robot)
     - [Vacuum Gripper (in conjunction with a contact sensor)](#vacuum-gripper-in-conjunction-with-a-contact-sensor)
 
 
@@ -23,7 +23,7 @@
 
 This plugin enables dynamic attachment and detachment of joints to arbitrary models/links in the Gazebo (formerly Ignition Gazebo) environment.
 
-Using this plugin, you can simulate scenarios such as "vacuum grippers" or "docking shelves to transport robots."
+Using this plugin, you can simulate scenarios such as "vacuum grippers" or "docking shelves to mobile robots."
 
 ![](./images/attachable_joint_mobile_robot_demo.gif)
 
@@ -87,7 +87,7 @@ To use this plugin, add the following to your SDF file:
 Here, we will run the following three simulations:
 
 - Simple attach/detach
-- Docking a shelf to a transport robot
+- Docking a shelf to a mobile robot
 - Vacuum gripper (in conjunction with a contact sensor)
 
 ### Simple Attach/Detach
@@ -120,28 +120,28 @@ This simulation demonstrates attaching and detaching two boxes, as shown in the 
 
 - After publishing the topic, the two boxes will be detached and will move independently as before.
 
-### Docking a Shelf to a Transport Robot
+### Docking a Shelf to a Mobile Robot
 
 ![](./images/attachable_joint_mobile_robot_demo.gif)
 
-This simulation demonstrates docking a shelf to a transport robot, as shown in the video below.
+This simulation demonstrates docking a shelf to a mobile robot, as shown in the video below.
 
-- Run the sample for docking a shelf to a transport robot.
+- Run the sample for docking a shelf to a mobile robot.
 
     ```bash
     ros2 launch attachable_plugin_demos mobile_robot_demo.launch.py
     ```
 
-- Once Gazebo starts, try moving the transport robot using teleop. At this point, it should not be attached and should move independently.
+- Once Gazebo starts, try moving the mobile robot using teleop. At this point, it should not be attached and should move independently.
 
-- Move the transport robot near the bottom of the shelf, then publish a topic to attach them.
+- Move the mobile robot near the bottom of the shelf, then publish a topic to attach them.
 
     ```bash
     gz topic -t /attach -m gz.msgs.StringMsg   -p 'data:"[mobile_robot_model][base_link][shelf][poll1][attach]"'
     ```
 
-- After publishing the topic, the transport robot and the shelf will be attached. When you move the transport robot, the shelf will move along with it.
-    - (In this example, a shelf without casters is used, so the transport robot's movement may become unstable when the shelf is attached. In practice, you may need to "slightly lift the shelf just before attaching" or "use a shelf with casters.")
+- After publishing the topic, the mobile robot and the shelf will be attached. When you move the mobile robot, the shelf will move along with it.
+    - (In this example, a shelf without casters is used, so the mobile robot's movement may become unstable when the shelf is attached. In practice, you may need to "slightly lift the shelf just before attaching" or "use a shelf with casters.")
 
 ### Vacuum Gripper (in conjunction with a contact sensor)
 
